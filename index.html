@@ -4,12 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My First Web on GitHub</title>
+    <style>
+        /* --- สไตล์เริ่มต้น (Light Mode) --- */
+        body {
+            text-align: center;
+            font-family: sans-serif;
+            background-color: #f4f6f9;
+            padding-top: 80px;
+            color: #333;
+            /* เพิ่ม transition เพื่อให้ตอนสลับโหมดมีความนุ่มนวล ไม่กระพริบตา */
+            transition: background-color 0.3s ease, color 0.3s ease; 
+        }
+        h1 {
+            color: #24292e;
+            transition: color 0.3s ease;
+        }
+        .card {
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            display: inline-block;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* ปุ่มสลับโหมด (อยู่มุมขวาบนของจอ) */
+        .theme-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 18px;
+            font-size: 15px;
+            font-weight: bold;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            background-color: #24292e;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        /* --- สไตล์สำหรับโหมดมืด (Dark Mode) --- */
+        /* เมื่อ body มี class "dark-mode" สไตล์เหล่านี้จะทำงานแทน */
+        body.dark-mode {
+            background-color: #1a1d20;
+            color: #f0f3f6;
+        }
+        body.dark-mode h1 {
+            color: #ffffff;
+        }
+        body.dark-mode .card {
+            background-color: #2d3139;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        body.dark-mode .theme-btn {
+            background-color: #f4f6f9;
+            color: #24292e;
+        }
+    </style>
 </head>
-<body style="text-align: center; font-family: sans-serif; background-color: #f4f6f9; padding-top: 80px; color: #333;">
-    <h1 style="color: #24292e;">🎉 ยินดีด้วยครับ! หน้าเว็บแรกทำงานแล้ว</h1>
+<body>
+
+    <button class="theme-btn" id="themeToggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+
+    <h1>🎉 ยินดีด้วยครับ! หน้าเว็บแรกทำงานแล้ว</h1>
     <p style="font-size: 18px;">เว็บไซต์นี้สร้างขึ้นเพื่อทดสอบระบบ GitHub Pages</p>
-    <div style="margin-top: 30px; padding: 20px; background: white; display: inline-block; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+    
+    <div class="card">
         เตรียมพร้อมสำหรับ Workshop GitHub + Gen AI 🚀
     </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeToggle');
+            
+            // สลับการเปิด-ปิด class 'dark-mode' ที่ตัว body
+            body.classList.toggle('dark-mode');
+            
+            // ตรวจสอบว่าตอนนี้เป็น Dark Mode หรือไม่ เพื่อเปลี่ยนข้อความบนปุ่ม
+            if (body.classList.contains('dark-mode')) {
+                btn.innerHTML = '☀️ Light Mode';
+            } else {
+                btn.innerHTML = '🌙 Dark Mode';
+            }
+        }
+    </script>
 </body>
 </html>
